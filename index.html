@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0f14" />
+  <title>PEACE — Meme Token</title>
+  <meta name="description" content="PEACE meme token on Solana. Contract + buy + chart." />
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#111826;
+      --text:#eaf2ff;
+      --muted:#9fb0c3;
+      --accent:#7cffc4;
+      --border:rgba(255,255,255,.10);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    .wrap{max-width:980px; margin:0 auto; padding:18px}
+
+    /* HERO */
+    .hero{
+      position:relative;
+      border:1px solid var(--border);
+      border-radius:24px;
+      overflow:hidden;
+      background:rgba(255,255,255,.03);
+    }
+
+    /* Use the image as background so we can control position/zoom */
+    .hero-bg{
+      position:absolute; inset:0;
+      background-image:url("./markup_1000014311.png");
+      background-repeat:no-repeat;
+      /* IMPORTANT: contain shows the full word PEACE */
+      background-size:contain;
+      background-position:center top;
+      /* Optional: make it a bit soft so text is readable */
+      filter:saturate(1.05);
+      transform:translateZ(0);
+    }
+
+    /* Dark overlay for readability */
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.58));
+      pointer-events:none;
+    }
+
+    /* Content sits on top */
+    .hero-content{
+      position:relative;
+      z-index:2;
+      height:min(70vh, 560px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:22px 16px;
+    }
+
+    /* REMOVE the big PEACE title (so it won't duplicate the image text) */
+    .tagline{
+      margin-top:160px; /* pushes text down so it aligns with image text */
+      font-size: clamp(18px, 2.6vw, 22px);
+      font-weight:900;
+      letter-spacing:.2px;
+      text-shadow:0 10px 30px rgba(0,0,0,.45);
+    }
+
+    .sub{
+      margin-top:8px;
+      color:rgba(234,242,255,.88);
+      font-weight:700;
+      text-shadow:0 10px 30px rgba(0,0,0,.45);
+    }
+
+    .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px; justify-content:center}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:13px 18px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      font-weight:950;
+      text-decoration:none;
+      cursor:pointer;
+      min-width:140px;
+    }
+    .btn:hover{background:rgba(255,255,255,.12)}
+    .btn.buy{
+      background:var(--accent);
+      color:#04110b;
+      border-color:rgba(124,255,196,.35);
+    }
+    .btn.buy:hover{filter:brightness(1.05)}
+    .btn.chart{
+      background:rgba(106,167,255,.18);
+      border-color:rgba(106,167,255,.35);
+    }
+
+    /* Cards */
+    .card{
+      margin-top:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+    .label{color:var(--muted); font-size:12px; font-weight:900; letter-spacing:.3px}
+    .mono{
+      margin-top:8px;
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      padding:12px;
+      word-break:break-all;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 760px){
+      .grid{grid-template-columns:1fr}
+      .tagline{margin-top:130px;}
+      .hero-content{height:min(74vh, 600px);}
+    }
+
+    .muted{color:var(--muted)}
+    .footer{
+      padding:18px 0 34px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+    }
+
+    .toast{
+      position:fixed; left:50%; bottom:16px;
+      transform:translateX(-50%);
+      background:rgba(17,24,38,.92);
+      border:1px solid rgba(255,255,255,.14);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      opacity:0;
+      pointer-events:none;
+      transition:.18s ease;
+    }
+    .toast.show{opacity:1; transform:translateX(-50%) translateY(-6px);}
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <!-- No big PEACE title here (image already has it) -->
+        <div class="tagline">Make Peace. Not War. ☮️</div>
+        <div class="sub">Solana meme token — community powered</div>
+
+        <div class="btnrow">
+          <!-- IMPORTANT: replace BUY_URL with your real buy link -->
+          <a class="btn buy" id="buyBtn" target="_blank" rel="noreferrer" href="#">
+            BUY PEACE
+          </a>
+
+          <!-- Chart button uses the current link (MobyScreener) -->
+          <a class="btn chart" target="_blank" rel="noreferrer"
+             href="https://www.mobyscreener.com/solana/89gErNSVG3fZ4KR7iR9Zx5zMsSYVnbFWD1kTRNnBbonk">
+            CHART
+          </a>
+
+          <button class="btn" id="copyBtn" type="button">COPY CA</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTRACT -->
+    <section class="card">
+      <div class="label">CONTRACT ADDRESS (CA)</div>
+      <div class="mono" id="contractText">89gErNSVG3fZ4KR7iR9Zx5zMsSYVnbFWD1kTRNnBbonk</div>
+      <div class="muted" style="margin-top:10px; font-size:13px;">
+        This website is informational only. Crypto is risky.
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section class="grid">
+      <div class="card">
+        <div class="label">TOKEN INFO</div>
+        <div style="margin-top:10px">
+          <div><b>Network:</b> <span class="muted">Solana</span></div>
+          <div style="margin-top:6px"><b>Total Supply:</b> <span class="muted">60,000,000</span></div>
+          <div style="margin-top:6px"><b>Type:</b> <span class="muted">Meme token</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="label">LINKS</div>
+        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn" target="_blank" rel="noreferrer"
+             href="https://www.mobyscreener.com/solana/89gErNSVG3fZ4KR7iR9Zx5zMsSYVnbFWD1kTRNnBbonk">
+            MobyScreener
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © <span id="year"></span> PEACE — Make Peace, Not War.
+    </div>
+  </main>
+
+  <div class="toast" id="toast">Copied!</div>
+
+  <script>
+    // ✅ CHANGE ONLY THIS:
+    // Put your buy link here (Jupiter / Raydium / etc.)
+    const BUY_URL = "PASTE_YOUR_BUY_LINK_HERE";
+
+    const contract = "89gErNSVG3fZ4KR7iR9Zx5zMsSYVnbFWD1kTRNnBbonk";
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Set buy button link
+    const buyBtn = document.getElementById("buyBtn");
+    buyBtn.href = BUY_URL;
+
+    function toast(msg){
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(()=>t.classList.remove("show"), 1200);
+    }
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(contract);
+        toast("Contract copied!");
+      }catch(e){
+        const el = document.createElement("textarea");
+        el.value = contract;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+        toast("Contract copied!");
+      }
+    });
+  </script>
+</body>
+</html>

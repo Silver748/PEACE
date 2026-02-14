@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$PEACE on Solana — Make Peace Not War</title>
+  <meta name="description" content="$PEACE is more than a token. It's a mission. Community-driven • Transparent burn milestones • Donations." />
+
+  <style>
+    :root{
+      --bg1:#0b1020;
+      --bg2:#0a2a3a;
+      --card: rgba(255,255,255,.08);
+      --card2: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --line: rgba(255,255,255,.14);
+      --accent: #8ee6ff;
+      --accent2:#b9ffdd;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 0%, rgba(142,230,255,.18), transparent 60%),
+        radial-gradient(1000px 700px at 80% 20%, rgba(185,255,221,.14), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+
+    header{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      padding: 10px 6px 18px;
+    }
+
+    .logo{
+      width:54px;height:54px;border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,.15)),
+                  linear-gradient(135deg, rgba(142,230,255,.9), rgba(185,255,221,.7));
+      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,.25);
+      overflow:hidden;
+    }
+
+    /* Optional: if you have a logo image, place it at /logo.png and uncomment below */
+    /* .logo img{width:100%;height:100%;object-fit:cover;display:block;} */
+
+    .title h1{
+      margin:0;
+      font-size: 22px;
+      letter-spacing: .3px;
+      line-height:1.1;
+    }
+    .title p{
+      margin:6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero{
+      margin-top: 10px;
+      padding: 22px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,.05));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"PEACE";
+      position:absolute;
+      inset:auto -10% -40% auto;
+      font-size: 160px;
+      font-weight: 800;
+      letter-spacing: 8px;
+      color: rgba(255,255,255,.06);
+      transform: rotate(-8deg);
+      user-select:none;
+      pointer-events:none;
+      white-space:nowrap;
+    }
+
+    .hero h2{
+      margin:0 0 8px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+    .hero .tag{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(142,230,255,.12);
+      border: 1px solid rgba(142,230,255,.22);
+      color: rgba(255,255,255,.9);
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .hero p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.55;
+      max-width: 70ch;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 860px){
+      .grid{grid-template-columns:1fr}
+      .hero::before{font-size:120px}
+    }
+
+    .card{
+      padding: 18px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,.04));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size: 16px;
+      letter-spacing: .2px;
+    }
+
+    .row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .row:first-of-type{border-top:0; padding-top:0}
+    .row .k{color: var(--muted); font-size: 13px}
+    .row .v{font-size: 13px; overflow-wrap:anywhere; text-align:right}
+
+    .btns{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 14px;
+      text-decoration:none;
+      font-weight: 650;
+      font-size: 14px;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      box-shadow: 0 10px 22px rgba(0,0,0,.25);
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.24);}
+    .btn:active{transform: translateY(0px);}
+
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(142,230,255,.28), rgba(185,255,221,.18));
+      border-color: rgba(142,230,255,.35);
+    }
+
+    .btn .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(142,230,255,.12);
+    }
+    .btn.secondary .dot{background: var(--accent2); box-shadow: 0 0 0 4px rgba(185,255,221,.12);}
+    .btn.dark .dot{background: rgba(255,255,255,.9); box-shadow: 0 0 0 4px rgba(255,255,255,.10);}
+
+    .copy{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px dashed rgba(255,255,255,.22);
+      background: rgba(0,0,0,.14);
+    }
+    .copy code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      color: rgba(255,255,255,.88);
+      overflow-wrap:anywhere;
+      flex:1;
+    }
+    .copy button{
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 650;
+      cursor:pointer;
+    }
+    footer{
+      margin-top: 18px;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+      text-align:center;
+    }
+    .small{
+      color: rgba(255,255,255,.62);
+      font-size: 12.5px;
+      line-height: 1.4;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo" aria-label="Peace logo">
+        <!-- Optional logo image:
+        <img src="logo.png" alt="PEACE logo" />
+        -->
+      </div>
+      <div class="title">
+        <h1>$PEACE on Solana</h1>
+        <p>Make Peace Not War • Community-driven movement</p>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="tag">🕊️ Global Peace Movement</div>
+      <h2>Peace is more than a token. It’s a mission.</h2>
+      <p>
+        In a world divided by conflict and noise, we are building a community that stands for unity, awareness,
+        and action — with transparent burn milestones, community voting, and peace-focused donation initiatives.
+      </p>
+
+      <div class="btns">
+        <a class="btn primary" href="https://raydium.io/swap/?inputMint=sol&outputMint=39mHr3c2QPZ125fXJ4JW4fomPsPgyD28u4WKZxAppump" target="_blank" rel="noopener">
+          <span class="dot" aria-hidden="true"></span> Buy $PEACE (Raydium)
+        </a>
+
+        <a class="btn secondary" href="https://t.me/peaceonsoll" target="_blank" rel="noopener">
+          <span class="dot" aria-hidden="true"></span> Telegram
+        </a>
+
+        <!-- ✅ Button changed to X Account -->
+        <a class="btn dark" href="https://x.com/OnSol78816" target="_blank" rel="noopener">
+          <span class="dot" aria-hidden="true"></span> X Account
+        </a>
+      </div>
+
+      <div class="copy" role="group" aria-label="Contract address">
+        <code id="ca">39mHr3c2QPZ125fXJ4JW4fomPsPgyD28u4WKZxAppump</code>
+        <button id="copyBtn" type="button">Copy CA</button>
+      </div>
+
+      <div class="small">
+        Tip: Always verify the Contract Address before buying.
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h3>Roadmap pillars</h3>
+        <div class="row">
+          <div class="k">🔥 Burn milestones</div>
+          <div class="v">Triggered by goals reached</div>
+        </div>
+        <div class="row">
+          <div class="k">🗳 Community votes</div>
+          <div class="v">Telegram polls for key decisions</div>
+        </div>
+        <div class="row">
+          <div class="k">🌎 Donations</div>
+          <div class="v">Peace-related initiatives (transparent)</div>
+        </div>
+        <div class="row">
+          <div class="k">📈 Long-term growth</div>
+          <div class="v">Build, improve, expand</div>
+        </div>
+      </section>
+
+      <aside class="card">
+        <h3>Official links</h3>
+        <div class="row">
+          <div class="k">Website</div>
+          <div class="v"><a href="https://silver748.github.io/PEACE/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">silver748.github.io/PEACE/</a></div>
+        </div>
+        <div class="row">
+          <div class="k">Telegram</div>
+          <div class="v"><a href="https://t.me/peaceonsoll" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">t.me/peaceonsoll</a></div>
+        </div>
+        <div class="row">
+          <div class="k">X</div>
+          <div class="v"><a href="https://x.com/OnSol78816" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">x.com/OnSol78816</a></div>
+        </div>
+        <div class="row">
+          <div class="k">Contract</div>
+          <div class="v">39mHr3c…Appump</div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      © <span id="y"></span> $PEACE — Make Peace Not War
+    </footer>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Copy CA
+    const caText = document.getElementById("ca").textContent.trim();
+    const btn = document.getElementById("copyBtn");
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(caText);
+        const old = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => btn.textContent = old, 1200);
+      } catch (e) {
+        // Fallback for older browsers
+        const ta = document.createElement("textarea");
+        ta.value = caText;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        const old = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => btn.textContent = old, 1200);
+      }
+    });
+  </script>
+</body>
+</html>

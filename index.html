@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>$PEACE on Solana — Make Peace Not War</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(180deg,#0b1020,#0a2a3a);
+  color:white;
+  text-align:center;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  color:#ccc;
+  margin-bottom:30px;
+}
+
+.card{
+  background:rgba(255,255,255,0.08);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.tag{
+  background:rgba(255,80,80,0.15);
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:20px;
+  font-size:14px;
+  word-wrap:break-word;
+}
+
+.buttons{
+  margin-top:20px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+}
+
+.btn{
+  text-decoration:none;
+  padding:12px 18px;
+  border-radius:12px;
+  font-weight:bold;
+  display:inline-block;
+  transition:0.2s;
+}
+
+.btn:hover{
+  opacity:0.85;
+}
+
+.primary{background:#00c3ff;color:black;}
+.secondary{background:#00ffb3;color:black;}
+.dark{background:#222;color:white;}
+
+.copy-box{
+  margin-top:20px;
+  background:rgba(0,0,0,0.3);
+  padding:12px;
+  border-radius:12px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.copy-box code{
+  word-break:break-all;
+}
+
+.copy-box button{
+  padding:8px 14px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+footer{
+  margin-top:40px;
+  font-size:13px;
+  color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>$PEACE on Solana 🕊️</h1>
+<div class="subtitle">Make Peace Not War</div>
+
+<div class="card">
+
+<div class="tag">
+✅ Official Contract (Always verify):<br>
+39mHr3c2QPZ125fXJ4JW4fomPsPgyD28u4WKZxAppump
+</div>
+
+<p>
+Peace is more than a token. It’s a mission.<br>
+Community-driven • Transparent Burn Milestones • Donations
+</p>
+
+<div class="buttons">
+
+<a class="btn primary" 
+href="https://jup.ag/swap/SOL-39mHr3c2QPZ125fXJ4JW4fomPsPgyD28u4WKZxAppump" 
+target="_blank">
+Buy $PEACE (Jupiter)
+</a>
+
+<a class="btn secondary" 
+href="https://dexscreener.com/solana/39mHr3c2QPZ125fXJ4JW4fomPsPgyD28u4WKZxAppump" 
+target="_blank">
+Chart (Dexscreener)
+</a>
+
+<a class="btn secondary" 
+href="https://t.me/peaceonsoll" 
+target="_blank">
+Telegram
+</a>
+
+<a class="btn dark" 
+href="https://x.com/OnSol78816" 
+target="_blank">
+X Account
+</a>
+
+</div>
+
+<div class="copy-box">
+<code id="ca">39mHr3c2QPZ125fXJ4JW4fomPsPgyD28u4WKZxAppump</code>
+<button onclick="copyCA()">Copy CA</button>
+</div>
+
+</div>
+
+<footer>
+© 2026 $PEACE — Global Peace Movement
+</footer>
+
+</div>
+
+<script>
+function copyCA() {
+  const text = document.getElementById("ca").innerText;
+  navigator.clipboard.writeText(text);
+  alert("Contract Address copied!");
+}
+</script>
+
+</body>
+</html>

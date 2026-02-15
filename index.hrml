@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$PEACE on Solana — Make Peace Not War</title>
+
+  <style>
+    :root{
+      --bg1:#070a12;
+      --bg2:#071b2a;
+      --card:rgba(255,255,255,.07);
+      --stroke:rgba(255,255,255,.12);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.75);
+      --btn1:#00c3ff;
+      --btn2:#00ffb3;
+      --btnDark:#1e2430;
+      --shadow:0 20px 60px rgba(0,0,0,.55);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 700px at 20% 0%, #123a5a 0%, transparent 55%),
+                  radial-gradient(900px 500px at 85% 10%, #2a2b6a 0%, transparent 55%),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+    }
+
+    .wrap{max-width:980px;margin:0 auto;padding:22px 18px 60px}
+
+    /* HERO */
+    .hero{
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      border:1px solid var(--stroke);
+      background:#000;
+    }
+    .heroTop{
+      position:relative;
+      height:320px;
+      background:#000;
+    }
+    .heroTop img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .heroOverlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.65));
+    }
+    .heroBody{
+      padding:18px 18px 22px;
+      background:rgba(0,0,0,.35);
+      backdrop-filter: blur(8px);
+    }
+
+    .brandRow{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .avatar{
+      width:64px;height:64px;border-radius:50%;
+      border:2px solid rgba(255,255,255,.35);
+      box-shadow:0 10px 25px rgba(0,0,0,.45);
+      overflow:hidden;
+      flex:0 0 auto;
+      background:#0b0f1c;
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+    h1{
+      margin:0;
+      font-size:30px;
+      letter-spacing:.3px;
+      line-height:1.1;
+    }
+    .sub{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .pillRow{
+      display:flex;flex-wrap:wrap;gap:10px;
+      margin-top:14px;
+    }
+    .pill{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+    }
+
+    .caBox{
+      margin-top:14px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.06);
+      border-radius:14px;
+      padding:12px 12px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:space-between;
+    }
+    .caBox code{
+      font-size:12px;
+      color:rgba(255,255,255,.9);
+      word-break:break-all;
+    }
+    .copyBtn{
+      border:0;
+      background:rgba(255,255,255,.12);
+      color:#fff;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .copyBtn:active{transform:scale(.98)}
+
+    .btnRow{
+      margin-top:16px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      font-weight:800;
+      padding:12px 16px;
+      border-radius:14px;
+      transition:.15s;
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .btn:hover{opacity:.9; transform:translateY(-1px)}
+    .btn.primary{background:var(--btn1); color:#001018}
+    .btn.secondary{background:var(--btn2); color:#001018}
+    .btn.dark{background:var(--btnDark); color:#fff}
+
+    /* SECTIONS */
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+    }
+    @media (max-width: 860px){
+      .heroTop{height:260px}
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:0 16px 40px rgba(0,0,0,.35);
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+    .card p{
+      margin:0 0 10px;
+      color:rgba(255,255,255,.82);
+      line-height:1.5;
+      font-size:14px;
+    }
+    .list{
+      margin:10px 0 0;
+      padding:0 0 0 18px;
+      color:rgba(255,255,255,.82);
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    footer{
+      margin-top:22px;
+      color:rgba(255,255,255,.55);
+      font-size:12px;
+      text-align:center;
+    }
+    .tiny{
+      font-size:12px;
+      color:rgba(255,255,255,.68);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="heroTop">
+        <!-- Banner topo -->
+        <img src="assets/banner-x.png" alt="PEACE banner" />
+        <div class="heroOverlay"></div>
+      </div>
+
+      <div class="heroBody">
+        <div class="brandRow">
+          <!-- Foto de perfil / mascote -->
+          <div class="avatar">
+            <img src="assets/profile.png" alt="PEACE mascot" />
+          </div>
+
+          <div>
+            <h1>$PEACE on Solana 🕊️</h1>
+            <div class="sub">Make Peace Not War — A global, community-driven peace movement.</div>
+          </div>
+        </div>
+
+        <div class="pillRow">
+          <div class="pill">Transparent burn milestones</div>
+          <div class="pill">Community voting</div>
+          <div class="pill">Peace-related donation initiatives</div>
+          <div class="pill">Long-term vision</div>
+        </div>
+
+        <div class="caBox">
+          <code id="ca">39mHr3c2QPZ125fXJ4JW4fomPsPgyD28u4WKZxAppump</code>
+          <button class="copyBtn" onclick="copyCA()">Copy CA</button>
+        </div>
+
+        <div class="btnRow">
+          <a class="btn primary" target="_blank"
+             href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=39mHr3c2QPZ125fXJ4JW4fomPsPgyD28u4WKZxAppump">
+            Buy $PEACE (Jupiter)
+          </a>
+
+          <a class="btn secondary" target="_blank"
+             href="https://dexscreener.com/solana/39mHr3c2QPZ125fXJ4JW4fomPsPgyD28u4WKZxAppump">
+            Chart (Dexscreener)
+          </a>
+
+          <a class="btn secondary" target="_blank" href="https://t.me/peaceonsoll">
+            Telegram
+          </a>
+
+          <a class="btn dark" target="_blank" href="https://x.com/OnSol78816">
+            X Account
+          </a>
+        </div>
+
+        <div class="tiny" style="margin-top:10px;">
+          Tip: Always verify the contract address before buying.
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Mission</h2>
+        <p>
+          $PEACE is more than a token — it’s a statement. We are building a community that stands for unity,
+          awareness, and real-world peace initiatives.
+        </p>
+        <ul class="list">
+          <li>Community votes to decide peace-related actions</li>
+          <li>Transparent burn events tied to milestones</li>
+          <li>Donation initiatives chosen by the community</li>
+          <li>Growth through consistency, not hype</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Roadmap (Simple)</h2>
+        <ul class="list">
+          <li><b>Phase 1:</b> Community + branding + verification</li>
+          <li><b>Phase 2:</b> Votes + donation partner shortlist</li>
+          <li><b>Phase 3:</b> Burn milestones + public proof posts</li>
+          <li><b>Phase 4:</b> Global outreach + collaborations</li>
+        </ul>
+        <p style="margin-top:10px;">
+          We move step by step — together.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 $PEACE — Make Peace Not War
+    </footer>
+  </div>
+
+  <script>
+    function copyCA(){
+      const ca = document.getElementById("ca").innerText.trim();
+      navigator.clipboard.writeText(ca);
+      alert("Contract Address copied!");
+    }
+  </script>
+</body>
+</html>
